@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-18.04
+          - ubuntu-22.04
     steps:
       - name: Cache multiple paths
         uses: actions/cache@v2
@@ -19,16 +19,16 @@ jobs:
           path: |-
             node_modules
             vendor/bundle
-          key: '${{ runner.os }}-${{ hashFiles(''TODO'') }}'
+          key: '${{ runner.os }}-${{ hashFiles('**/master.key') }}'
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: 12.13.1
+          node-version: 13.14.0
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - run: gem install bundler:2.1.4
-      - run: npm install -g yarn@1.22.4
+      - run: npm install -g yarn@1.19.1
       - run: bundle install
       - run: yarn install
       - run: bundle exec rake db:setup
