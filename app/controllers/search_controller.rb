@@ -10,8 +10,6 @@ class SearchController < ApplicationController
     result = service.representative_info_by_address(address: address)
     @representatives = Representative.civic_api_to_representative_params(result)
 
-    service.get_representative_details
-
     render 'representatives/search'
   end
 end
