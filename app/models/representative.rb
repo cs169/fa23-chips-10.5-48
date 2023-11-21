@@ -9,7 +9,7 @@ class Representative < ApplicationRecord
     rep_info.officials.each_with_index do |official, index|
       ocdid_temp = ''
       title_temp = ''
-      # adress_temp = ''
+      # address_temp = ''
       # pol_party_temp = ''
       # photo_temp = ''
 
@@ -17,7 +17,9 @@ class Representative < ApplicationRecord
         if office.official_indices.include? index
           title_temp = office.name
           ocdid_temp = office.division_id
-
+          # adress_temp = office.address
+          # pol_party_temp = office.party
+          # photo_temp = office.photoUrl
         end
       end
 
