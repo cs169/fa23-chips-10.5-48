@@ -8,6 +8,9 @@ class RepresentativesController < ApplicationController
   def show
     @representative = Representative.find(params[:id])
     @additional_info = fetch_representative_details(@representative)
+    service = Google::Apis::CivicinfoV2::CivicInfoService.new
+    service.key = Rails.application.credentials[:GOOGLE_API_KEY]
+    result = service.representative_info_by_address(address: address)
   end
   
   private
@@ -19,5 +22,5 @@ class RepresentativesController < ApplicationController
     # api_response = YourService.get_representative_details(representative.name)
     # Parse the response and return necessary details
   end
-  
+
 end
