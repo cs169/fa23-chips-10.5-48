@@ -1,7 +1,7 @@
 <h1><%= @representative.name %>'s Profile</h1>
 <div>
-  <img src="<%= @representative.photo_url %>" alt="Representative Photo">
+  <img src="<%= @representative.photoUrl %>" alt="Representative Photo">
   <p>Name: <%= link_to @representative.name, representative_path(@representative) %></p>
-  <p>Contact Address: <%= @representative.contact_address %></p>
-  <p>Political Party: <%= @representative.political_party %></p>
+  <p>Contact Address: <%= @representative.address %></p>
+  <p>Political Party: <%= @representative.polparty %></p>
 </div>
