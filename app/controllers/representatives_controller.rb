@@ -6,11 +6,14 @@ class RepresentativesController < ApplicationController
   end
 
   def show
+    # not sure if this is correct
+    
     @representative = Representative.find(params[:id])
     @additional_info = fetch_representative_details(@representative)
     service = Google::Apis::CivicinfoV2::CivicInfoService.new
     service.key = Rails.application.credentials[:GOOGLE_API_KEY]
     result = service.representative_info_by_address(address: address)
+
   end
 
 end
