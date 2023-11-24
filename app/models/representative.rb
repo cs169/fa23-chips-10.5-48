@@ -20,11 +20,10 @@ class Representative < ApplicationRecord
         end
       end
 
-      rep_info.officials.each do |person|
-        address_temp = person.address
-        pol_party_temp = person.party
-        photo_temp = person.photoUrl
-      end
+      address_temp = official.address
+      pol_party_temp = official.party
+      photo_temp = official.photoUrl
+      
 
       # Can we make it so that when we create this representative, we also add in other information.  
       # This would probably be the easiest way to gather all the rep's information all in one method. 
