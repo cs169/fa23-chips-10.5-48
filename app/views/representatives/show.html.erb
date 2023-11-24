@@ -1,7 +1,12 @@
-<h1><%= @representative.name %>'s Profile</h1>
-<div>
-  <img src="<%= @representative.photoUrl %>" alt="Representative Photo">
-  <p>Name: <%= link_to @representative.name, representative_path(@representative) %></p>
-  <p>Contact Address: <%= @representative.address %></p>
-  <p>Political Party: <%= @representative.polparty %></p>
+<div class="card">
+  <div class="card-header">
+    <%= @representative.name %>'s Profile
+  </div>
+  <div class="card-body">
+    <img src="<%= @representative.photoUrl %>" class="rounded mx-auto d-block" alt="Representative Photo">
+
+    <p class="card-text">Name: <%= link_to @representative.name, representative_path(@representative) %></p>
+    <p class="card-text">Contact Address: <%= @representative.address %></p>
+    <p class="card-text">Political Party: <%= @representative.polparty %></p>
+  </div>
 </div>
