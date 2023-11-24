@@ -21,7 +21,7 @@ class Representative < ApplicationRecord
       end
 
       rep_info.officials.each do |person|
-        adress_temp = person.address
+        address_temp = person.address
         pol_party_temp = person.party
         photo_temp = person.photoUrl
       end
@@ -31,7 +31,7 @@ class Representative < ApplicationRecord
       # For example:
       
       rep = Representative.create!({ name: official.name, ocdid: ocdid_temp,
-      title: title_temp,  address: adress_temp, polparty: pol_party_temp, photoUrl: photo_temp})
+      title: title_temp,  address: address_temp, polparty: pol_party_temp, photoUrl: photo_temp})
 
       # rep = Representative.create!({ name: official.name, ocdid: ocdid_temp,
       #     title: title_temp })
