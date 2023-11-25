@@ -252,3 +252,48 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+When(/^I click the state (.+)$/) do |state|
+  visit state_map_path(state)
+end
+
+When(/^I search representatives for county (.+)$/) do |county|
+  visit county_path("CA", county)
+end
+
+When(/^I visit the page (.+)$/) do |page|
+  visit page
+ end
+
+Given(/these representatives exist/) do |rep|
+  rep.hashes.each do |r|
+      Representative.create!(r)
+      NewsItem.new
+  end
+end
+
+When(/I visit profile (.*)/) do |user|
+  visit user_profile_path
+end
+
+When(/I create event (.*)/) do |user|
+  visit new_my_event_path
+end
+
+Given (/the setup(.*)/) do |_unused|
+  State.create!(                name:         'California',
+  symbol:       'CA',
+  fips_code:    '06',
+  is_territory: 0,
+  lat_min:      '-124.409591',
+  lat_max:      '-114.131211',
+  long_min:     '32.534156',
+  long_max:     '-114.131211')
+  state = State.find_by(symbol: 'CA')
+  County.create!(
+      name:       'Contra Costa County',
+      state_id:   state.id,
+      fips_code:  1,
+      fips_class: 'test'
+  )
+end
