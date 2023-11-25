@@ -21,6 +21,9 @@ class Representative < ApplicationRecord
       pol_party_temp = official.party
       photo_temp = official.photoUrl
 
+      existing_representative = Representative.find_by(name: official.name, ocdid: ocdid_temp)
+      next if existing_representative
+
       rep = Representative.create!({ name: official.name, ocdid: ocdid_temp,
       title: title_temp, address: address_temp, polparty: pol_party_temp, photoUrl: photo_temp })
 

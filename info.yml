@@ -1,0 +1,24 @@
+project:
+  name: 'CS169-fa23-48'
+  owner: 'fa23'
+  teamId: '48'
+  identities: {}
+  notifications:
+    email: 'avinashrao2002@berkeley.edu'
+  members:
+    member1:
+      name: 'Avinash'
+      surname: 'Rao' 
+      githubUsername: 'avinashrao2002'
+    member2:
+      name: 'Saketh'
+      surname: 'Panchumarthy' 
+      githubUsername: 'spanch2'
+    member3:
+      name: 'Pallavi'
+      surname: 'Murthy' 
+      githubUsername: 'pmpm02'
+    member4:
+      name: 'Javier'
+      surname: 'Pinedo' 
+      githubUsername: 'jepinedo'
