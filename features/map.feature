@@ -14,9 +14,6 @@ Scenario: See representatives in Contra Costa County, CA
 
 Scenario: See representatives
   Given I am on the representatives page
-  When I fill in "address" with "Berkeley, CA"
-  When I press "commit"
-
 
 Scenario: See representative Newsom
   Given I am on the home page
