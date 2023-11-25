@@ -17,19 +17,17 @@ class Representative < ApplicationRecord
         end
       end
 
-      address_temp = official.address
+      address_temp = official.address.nil? ? 'No Address Listed' : official.address[0].line1 + ' ' + official.address[0].city + ', ' + official.address[0].state + ' ' + official.address[0].zip
       pol_party_temp = official.party
-      photo_temp = official.photoUrl
+      photo_temp = official.photo_url.nil? ? '' : official.photo_url
 
       existing_representative = Representative.find_by(name: official.name, ocdid: ocdid_temp)
-      next if existing_representative
 
-      rep = Representative.create!({ name: official.name, ocdid: ocdid_temp,
-      title: title_temp, address: address_temp, polparty: pol_party_temp, photoUrl: photo_temp })
+      rep = Representative.find_or_create_by!({ name: official.name, ocdid: ocdid_temp,
+      title: title_temp, address: address_temp, party: pol_party_temp, photo: photo_temp })
 
       reps.push(rep)
     end
-
     reps
   end
 end

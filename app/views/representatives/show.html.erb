@@ -3,10 +3,10 @@
     <%= @representative.name %>'s Profile
   </div>
   <div class="card-body">
-    <img src="<%= @representative.photoUrl %>" class="rounded mx-auto d-block" alt="Representative Photo">
+    <img src="<%= @representative.photo %>" class="rounded mx-auto d-block" alt="Representative Photo">
 
     <p class="card-text">Name: <%= link_to @representative.name, representative_path(@representative) %></p>
     <p class="card-text">Contact Address: <%= @representative.address %></p>
-    <p class="card-text">Political Party: <%= @representative.polparty %></p>
+    <p class="card-text">Political Party: <%= @representative.party %></p>
   </div>
 </div>
