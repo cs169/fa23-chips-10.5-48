@@ -25,10 +25,12 @@ class Representative < ApplicationRecord
     reps
   end
 
-  def get_addr_format(address)
+  def self.get_addr_format(address)
+    return if address.nil?
+
     "#{address[0].line1}
-    #{address[0].city},
-    #{address[0].state}
-    #{address[0].zip}"
+      #{address[0].city},
+      #{address[0].state}
+      #{address[0].zip}"
   end
 end

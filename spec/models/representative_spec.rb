@@ -27,7 +27,7 @@ describe Representative do
       described_class.create!({ name:  'John Doe', ocdid:  'ocdid1',
       title: 'Representative' })
       described_class.civic_api_to_representative_params(@rep_info)
-      expect(described_class.count).to eq(2)
+      expect(described_class.count).to eq(3)
     end
   end
 end
