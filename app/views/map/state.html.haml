@@ -34,8 +34,7 @@
                                             %td= county.name
                                             %td= county.std_fips_code
                                             %td
-                                                = link_to 'View', county_path(state_symbol: @state.symbol,
-                                                std_fips_code: county.std_fips_code),
+                                                = link_to 'View', search_representatives_path(county.name),
                                                 class: 'btn btn-primary'
 #actionmap-info-box
 #actionmap-info-container{ 'data-counties': @county_details.to_json, 'data-state': @state.to_json,
