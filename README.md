@@ -11,7 +11,8 @@ political events in their area as well as aggregate, share and view news items i
 
 [![All Specs](https://github.com/saasbook/hw-agile-iterations/actions/workflows/specs.yml/badge.svg)](https://github.com/saasbook/hw-agile-iterations/actions/workflows/specs.yml)
 
-[![codecov](https://app.codecov.io/gh/cs169/fa23-chips-10.5-48/tree/master)](https://app.codecov.io/gh/cs169/fa23-chips-10.5-48/tree/master)
+[![codecov](https://codecov.io/gh/saasbook/hw-agile-iterations/branch/master/graph/badge.svg?token=SGYCvQX4Us)](https://app.codecov.io/gh/cs169/fa23-chips-10.5-48/tree/master)
+
 
 ### Getting Setup Locally
 
