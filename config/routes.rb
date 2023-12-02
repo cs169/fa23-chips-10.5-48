@@ -24,10 +24,14 @@ Rails.application.routes.draw do
     match '/my_events/:id', to: 'my_events#update', via: %i[put patch]
     match '/my_events/:id', to: 'my_events#destroy', via: [:delete]
 
+    
+
     # Routes for Representatives
     resources :representatives, only: [:index]
     resources :representatives do
         resources :news_items, only: %i[index show]
+        get '/representatives/:representative_id/:issue/search' => 'my_news_items#search',
+            :as                                                    => :representative_search_my_news_item
         get '/representatives/:representative_id/my_news_item/new' => 'my_news_items#new',
             :as                                                    => :new_my_news_item
         match '/representatives/:representative_id/my_news_item/new', to:  'my_news_items#create',

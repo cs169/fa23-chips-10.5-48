@@ -1,4 +1,4 @@
-= form_for news_item, url: form_url, html: { method: form_method } do |f|
+= form_for news_item, url: { action: 'search', controller: 'my_news_items', representative_id: @representative.id, issue: @issue }, method: :post do |f|
     - if news_item.errors.any?
         .alert.alert-danger
             %h2
@@ -18,5 +18,8 @@
         .col-sm-10
             = select :news_item, :issue, issue_list, { include_blank: true },
             class: 'form-control'
+    = f.hidden_field :representative_id, value: @representative.id
+    = f.hidden_field :issue, value: @issue
     .actions
         = f.submit 'Search', class: 'btn btn-primary'
+    

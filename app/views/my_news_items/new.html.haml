@@ -4,13 +4,8 @@
 
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
         = render 'create_form', news_item: @news_item,
-        form_url: representative_new_my_news_item_path(@representative),
+        form_url: representative_search_my_news_item_path(representative_id: @representative.id, issue: @issue),
         form_method: :post,
         representatives_list: @representatives_list,
         issue_list: @issue_list
-    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-        .clearfix.mt-3
-            .float-right
-                = link_to representative_news_items_path(@representative), class: 'btn btn-info' do
-                    View news articles
-                    %i.fas.fa-arrow-right
+

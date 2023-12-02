@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# require 'news-api'
+
 class MyNewsItemsController < SessionController
   before_action :set_representative
   before_action :set_representatives_list
@@ -11,6 +13,11 @@ class MyNewsItemsController < SessionController
   end
 
   def edit; end
+
+  def search
+    # newsapi = News.new(NEWS_API_KEY)
+    render :search, error: 'An error'
+  end
 
   def create
     @news_item = NewsItem.new(news_item_params)
