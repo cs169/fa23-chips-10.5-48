@@ -37,12 +37,22 @@ class MyNewsItemsController < SessionController
                 notice: 'News was successfully destroyed.'
   end
 
+  def search
+    set_representative
+    set_issue
+    render :search
+  end
+
   private
 
   def set_representative
     @representative = Representative.find(
       params[:representative_id]
     )
+  end
+
+  def set_issue
+    @issue = params[:news_item][:issue]
   end
 
   def set_representatives_list
