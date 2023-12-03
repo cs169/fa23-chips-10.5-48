@@ -3,13 +3,27 @@
         %h1.text-center Edit News Item
 
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-        .form-group.row
-            .col-sm-2
-                = label :news_item, :representative, class: 'col-form-label'
-            .col-sm-10
-                = label :news_item, @representative.id, class: 'col-form-label'
-        .form-group.row
-            .col-sm-2
-                = label :news_item, :issue, class: 'col-form-label'
-            .col-sm-10
-                = label :news_item, @issue, class: 'col-form-label'
+        = form_for '', url: 'fake', html: { method: :post } do |f|
+            .form-group.row
+                .col-sm-2
+                    = label :news_item, :representative, class: 'col-form-label'
+                .col-sm-10
+                    = label :news_item, @representative.id, class: 'col-form-label'
+            .form-group.row
+                .col-sm-2
+                    = label :news_item, :issue, class: 'col-form-label'
+                .col-sm-10
+                    = label :news_item, @issue, class: 'col-form-label'
+            .form-group.row
+                .col-sm-2
+                    = label :news_item, :articles, class: 'col-form-label'
+                .col-sm-10
+                    - @articles.each_with_index do |article, index|
+                        = f.radio_button article["title"], article["title"], id: 'title', :checked => false
+                        = article["title"]
+                        %br
+            .actions
+                = f.submit 'Search', class: 'btn btn-primary'
+                
+
+         
