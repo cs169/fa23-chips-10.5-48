@@ -61,6 +61,30 @@ class MyNewsItemsController < SessionController
     @news_item = NewsItem.find(params[:id])
   end
 
+  def save_rating
+    # Retrieve the selected article ID and rating from the form
+    selected_article_id = params[:selected_article_id]
+    rating = params[:rating]
+  
+    # Find the article based on the selected ID
+    selected_article = @news_articles.find { |article| article[:id] == selected_article_id }
+  
+    if selected_article
+      # Save the article and rating to the database (assuming you have a NewsItem model)
+      NewsItem.create!(
+        title: selected_article[:title],
+        link: selected_article[:url],
+        description: selected_article[:description],
+        rating: rating
+      )
+      flash[:success] = 'Article and rating saved successfully!'
+      redirect_to root_path # Redirect wherever you need
+    else
+      flash[:error] = 'Selected article not found!'
+      render :select_article # Render the article selection page again with an error message
+    end
+  end
+
   # Only allow a list of trusted parameters through.
   def news_item_params
     params.require(:news_item).permit(:news, :title, :description, :link, :representative_id, :issue)
