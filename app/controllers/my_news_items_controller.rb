@@ -40,19 +40,38 @@ class MyNewsItemsController < SessionController
   end
 
   def search
-    set_representative
+    set_representative_input
     set_issue
     set_articles
     render :search
   end
 
+  def save_article
+    set_representative_input
+    set_issue
+    set_article
+    set_rating
+    flash[:notice] = 'Article saved!'
+  end
+
   private
+
+  def set_rating
+    @rating = params[:news_item][:rating]
+  end
 
   def set_representative
     @representative = Representative.find(
       params[:representative_id]
     )
   end
+
+  def set_representative_input
+    @representative = Representative.find(
+      params[:news_item][:representative_id]
+    )
+  end
+
 
   def set_issue
     @issue = params[:news_item][:issue]
