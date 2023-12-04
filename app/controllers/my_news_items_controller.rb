@@ -78,6 +78,7 @@ class MyNewsItemsController < SessionController
   end
 
   def set_articles
+    
     url = 'https://newsapi.org/v2/top-headlines?'\
       'q=Joe Biden&'\
       "apiKey=#{Rails.application.credentials[:NEWS_API_KEY]}"
@@ -87,7 +88,7 @@ class MyNewsItemsController < SessionController
     response_body = req.read
     json = JSON.parse(response_body)
 
-    @articles = json["articles"]
+    @articles = json["articles"].take(5)
     # newsapi = News.new(Rails.application.credentials[:NEWS_API_KEY])  
     # @articles = newsapi.get_top_headlines(q: "Joe Biden").articles
   end
