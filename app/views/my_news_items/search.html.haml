@@ -5,9 +5,9 @@
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
         = form_for '', url: 'search', html: { method: :post } do |f|
             .form-group.row
-                .col-sm-2
+                .col-sm-3
                     = label :news_item, :representative, class: 'col-form-label'
-                .col-sm-10
+                .col-sm-9
                     = link_to @representative.name, representative_path(@representative), class: 'col-form-label'
             .form-group.row
                 .col-sm-2
