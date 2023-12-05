@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'open-uri'
+require 'json'
 
 class MyNewsItemsController < SessionController
   before_action :set_representative
@@ -37,12 +39,38 @@ class MyNewsItemsController < SessionController
                 notice: 'News was successfully destroyed.'
   end
 
+  def search
+    set_representative
+    set_issue
+    set_articles
+    render :search
+  end
+
   private
 
   def set_representative
     @representative = Representative.find(
       params[:representative_id]
     )
+  end
+
+  def set_issue
+    @issue = params[:news_item][:issue]
+  end
+
+  def set_articles
+    url = 'https://newsapi.org/v2/top-headlines?'\
+      'q=Joe Biden&'\
+      "apiKey=#{Rails.application.credentials[:NEWS_API_KEY]}"
+
+    req = open(url)
+
+    response_body = req.read
+    json = JSON.parse(response_body)
+
+    @articles = json["articles"]
+    # newsapi = News.new(Rails.application.credentials[:NEWS_API_KEY])  
+    # @articles = newsapi.get_top_headlines(q: "Joe Biden").articles
   end
 
   def set_representatives_list
