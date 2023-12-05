@@ -3,27 +3,37 @@
         %h1.text-center Edit News Item
 
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-        = form_for '', url: 'fake', html: { method: :post } do |f|
+        = form_for '', url: representative_search_my_news_item_path(@representative), html: { method: :post } do |f|
             .form-group.row
                 .col-sm-2
                     = label :news_item, :representative, class: 'col-form-label'
                 .col-sm-10
-                    = label :news_item, @representative.id, class: 'col-form-label'
+                    = label :news_item, @representative.name, class: 'col-form-label'
             .form-group.row
                 .col-sm-2
                     = label :news_item, :issue, class: 'col-form-label'
                 .col-sm-10
                     = label :news_item, @issue, class: 'col-form-label'
+                    = f.hidden_field :issue, value: @issue
             .form-group.row
                 .col-sm-2
                     = label :news_item, :articles, class: 'col-form-label'
                 .col-sm-10
                     - @articles.each_with_index do |article, index|
-                        = f.radio_button article["title"], article["title"], id: 'title', :checked => false
-                        = article["title"]
+                        = f.radio_button :article, {"title" => article["title"], "description" => article["description"], "url" => article["url"]}.to_s, id: 'title', :checked => false
+                        = "Title: #{article["title"]}"
                         %br
+                        %p= "Link: #{link_to article["url"], article["url"]}".html_safe
+                        = "Description: #{article["description"]}"
+                        %br
+                        %br
+                        
+            .form-group.row
+                .col-sm-2
+                    = label :rating, :rating, class: 'col-form-label'
+                .col-sm-10
+                    = select :rating, :rating, [1,2,3,4,5], { include_blank: true },
+                    class: 'form-control'
             .actions
-                = f.submit 'Search', class: 'btn btn-primary'
-                
-
+                = f.submit 'Save', class: 'btn btn-primary'
          

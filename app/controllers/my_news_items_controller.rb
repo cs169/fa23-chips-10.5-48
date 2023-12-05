@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'open-uri'
 require 'json'
 
@@ -46,6 +47,22 @@ class MyNewsItemsController < SessionController
     render :search
   end
 
+  def add_article
+    # render :new
+    article = params['article']
+    # json = JSON.parse(article)
+    JSON.parse article.gsub('=>', ':')
+    json = JSON.parse article.gsub('=>', ':')
+    @news_item = NewsItem.new({ title: json['title'], description: json['description'], link: json['url'],
+representative_id: params[:representative_id], issue: params[:issue] })
+    if @news_item.save
+      redirect_to representative_news_item_path(@representative, @news_item),
+                  notice: 'News item was successfully created.'
+    else
+      render :new, error: 'An error occurred when creating the news item.'
+    end
+  end
+
   private
 
   def set_representative
@@ -60,16 +77,16 @@ class MyNewsItemsController < SessionController
 
   def set_articles
     url = 'https://newsapi.org/v2/top-headlines?'\
-      'q=Joe Biden&'\
-      "apiKey=#{Rails.application.credentials[:NEWS_API_KEY]}"
+          'q=Joe Biden&'\
+          "apiKey=#{Rails.application.credentials[:NEWS_API_KEY]}"
 
-    req = open(url)
+    req = URI.parse(url).open
 
     response_body = req.read
     json = JSON.parse(response_body)
 
-    @articles = json["articles"]
-    # newsapi = News.new(Rails.application.credentials[:NEWS_API_KEY])  
+    @articles = json['articles']
+    # newsapi = News.new(Rails.application.credentials[:NEWS_API_KEY])
     # @articles = newsapi.get_top_headlines(q: "Joe Biden").articles
   end
 
