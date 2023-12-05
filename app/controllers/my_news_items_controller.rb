@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'open-uri'
 require 'json'
 
@@ -72,24 +73,22 @@ class MyNewsItemsController < SessionController
     )
   end
 
-
   def set_issue
     @issue = params[:news_item][:issue]
   end
 
   def set_articles
-    
     url = 'https://newsapi.org/v2/top-headlines?'\
-      'q=Joe Biden&'\
-      "apiKey=#{Rails.application.credentials[:NEWS_API_KEY]}"
+          'q=Joe Biden&'\
+          "apiKey=#{Rails.application.credentials[:NEWS_API_KEY]}"
 
     req = open(url)
 
     response_body = req.read
     json = JSON.parse(response_body)
 
-    @articles = json["articles"].take(5)
-    # newsapi = News.new(Rails.application.credentials[:NEWS_API_KEY])  
+    @articles = json['articles'].take(5)
+    # newsapi = News.new(Rails.application.credentials[:NEWS_API_KEY])
     # @articles = newsapi.get_top_headlines(q: "Joe Biden").articles
   end
 
