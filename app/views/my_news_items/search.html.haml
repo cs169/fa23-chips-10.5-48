@@ -5,20 +5,20 @@
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
         = form_for '', url: representative_search_my_news_item_path(@representative), html: { method: :post } do |f|
             .form-group.row
-                .col-sm-2
+                .col-sm-3
                     = label :news_item, :representative, class: 'col-form-label'
-                .col-sm-10
-                    = label :news_item, @representative.name, class: 'col-form-label'
+                .col-sm-9
+                    = label :news_item, @representative.name.titleize, class: 'col-form-label'
             .form-group.row
-                .col-sm-2
+                .col-sm-3
                     = label :news_item, :issue, class: 'col-form-label'
-                .col-sm-10
+                .col-sm-9
                     = label :news_item, @issue, class: 'col-form-label'
                     = f.hidden_field :issue, value: @issue
             .form-group.row
-                .col-sm-2
+                .col-sm-3
                     = label :news_item, :articles, class: 'col-form-label'
-                .col-sm-10
+                .col-sm-9
                     - @articles.each_with_index do |article, index|
                         = f.radio_button :article, {"title" => article["title"], "description" => article["description"], "url" => article["url"]}.to_s, id: 'title', :checked => false
                         = "Title: #{article["title"]}"

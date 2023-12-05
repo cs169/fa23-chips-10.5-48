@@ -76,16 +76,16 @@ representative_id: params[:representative_id], issue: params[:issue] })
   end
 
   def set_articles
-    url = 'https://newsapi.org/v2/top-headlines?'\
-          'q=Joe Biden&'\
-          "apiKey=#{Rails.application.credentials[:NEWS_API_KEY]}"
+    url = 'https://newsapi.org/v2/everything?'\
+          'q=' + @representative.name + '&'\
+                                        "apiKey=#{Rails.application.credentials[:NEWS_API_KEY]}"
 
     req = URI.parse(url).open
 
     response_body = req.read
     json = JSON.parse(response_body)
 
-    @articles = json['articles']
+    @articles = json['articles'].take(5)
     # newsapi = News.new(Rails.application.credentials[:NEWS_API_KEY])
     # @articles = newsapi.get_top_headlines(q: "Joe Biden").articles
   end
