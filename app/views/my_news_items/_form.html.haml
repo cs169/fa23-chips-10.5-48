@@ -14,9 +14,9 @@
             class: 'form-control'
     .form-group.row
         .col-sm-3
-            = label :news_item, :issue, class: 'col-form-label'
+            = label :news_item, 'issue', class: 'col-form-label'
         .col-sm-9
-            = select :news_item, :issue, issue_list, { include_blank: true },
+            = select :news_item, 'issue', issue_list, { include_blank: true },
             class: 'form-control'
     .actions
         = f.submit 'Search', class: 'btn btn-primary'
