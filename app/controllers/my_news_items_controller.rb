@@ -95,10 +95,10 @@ class MyNewsItemsController < SessionController
     rating = params[:rating]
   
     # Find the article based on the selected ID
-    selected_article = @news_articles.find { |article| article[:id] == selected_article_id }
+    selected_article = @articles.find { |article| article[:id] == selected_article_id }
   
     if selected_article
-      # Save the article and rating to the database (assuming you have a NewsItem model)
+      # Save the article and rating to the database 
       NewsItem.create!(
         title: selected_article[:title],
         link: selected_article[:url],
