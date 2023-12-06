@@ -77,7 +77,7 @@ representative_id: params[:representative_id], issue: params[:issue] })
 
   def set_articles
     url = 'https://newsapi.org/v2/everything?'\
-          'q=' + @representative.name + '&'\
+          'q=' + "+" + @representative.name + " +" + @issue + '&'\
                                         "apiKey=#{Rails.application.credentials[:NEWS_API_KEY]}"
 
     req = URI.parse(url).open
